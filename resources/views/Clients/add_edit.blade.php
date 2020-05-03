@@ -9,9 +9,7 @@
             {{ session('status') }}
         </div>
     @endif
-
-    {{-- onsubmit="return validateForm()" --}}
-    
+  
     @if (isset($client_edit))
 
         {{-- Update User --}}
@@ -47,7 +45,7 @@
 
                             <div class="form-group">
                                 <label>User Phone <span class="text-danger">*</span></label>
-                                <input type="tel" name="user_phone" id="userphone" pattern=".{14,14}" title="Accept US Number format (888) 888-8888" class="tel form-control"  x-autocompletetype="tel" value="{{$client_edit->phone}}">
+                                <input type="tel" name="user_phone" id="userphone" class="tel form-control"  x-autocompletetype="tel" value="{{$client_edit->phone}}">
                                 @error('user_phone')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -60,7 +58,7 @@
                 </div>
             </div>
         </div>            
-        
+    
     @else
 
         {{-- Add User --}}
@@ -95,7 +93,7 @@
 
                             <div class="form-group">
                                 <label>User Phone <span class="text-danger">*</span></label>
-                                <input type="tel" name="user_phone" id="userphone" pattern=".{14,14}" title="Accept US Number format (888) 888-8888" class="tel form-control"  x-autocompletetype="tel" placeholder="Enter user phone" >
+                                <input type="tel" name="user_phone" id="userphone" class="tel form-control"  x-autocompletetype="tel" placeholder="Enter user phone" >
                                 @error('user_phone')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror

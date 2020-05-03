@@ -22,7 +22,6 @@
                 <thead>
                     <tr class="bg-primary text-white">
                         <th>Sr#</th>
-                        {{-- <th>id</th> --}}
                         <th>User Name</th>
                         <th>User Email</th>
                         <th>User Phone</th>
@@ -33,21 +32,18 @@
                 <tbody>
 
                     {{-- User Details --}}
-                    @foreach ($clients as $client)
+                    @foreach ($clients as $key => $client)
                         <tr>
-                            <td>{{$count}}</td>
-                            {{-- <td>{{$client->id}}</td> --}}
+                            <td>{{$key+1}}</td>
                             <td>{{$client->name}}</td>
                             <td>{{$client->email}}</td>
                             <td>{{$client->phone}}</td>
                             {{-- Note : we use created_at to record_date and make mask 2020-5-6 like down  --}}
-                            {{-- <td align="center">{{ date('yy-m-d', strtotime($client->created_at)) }}</td>     --}}
-                            <td align="center">{{$client->record_date}}</td>
+                            <td align="center">{{ date('yy-m-d', strtotime($client->created_at)) }}</td>    
                             <td align="center">
 
-                            {{-- Add User --}}
+                                {{-- Add User --}}
                                 <form action="{{url('edit/'.$client->id)}}"method="POST">
-                                    @csrf
                                     @method('GET')                                
                                     <button class="text-primary btn-sm-sm btn btn-default" type="submit"><i class="fa fa-fw fa-edit"></i> Edit </button>       
                                 </form>
@@ -60,9 +56,7 @@
                                 </form>
                             </td>
 
-                        </tr> 
-
-                        <?php $count +=1; ?>    
+                        </tr>    
 
                     @endforeach
                         

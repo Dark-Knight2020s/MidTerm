@@ -18,8 +18,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone');      
-            $table->date('record_date'); 
+            $table->unsignedInteger('phone')->default(0);   
             $table->timestamps(); //we use created_at to record_date and make mask 2020-5-6
 
         });

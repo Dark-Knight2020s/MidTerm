@@ -10,9 +10,8 @@ class ClientController extends Controller
 
     public function index()
     {
-        $count=1;
         $clients =Client::orderBy('name', 'asc')->get();
-        return view('Clients.index',compact('clients','count'));
+        return view('Clients.index',compact('clients'));
     } 
 
     public function create()
@@ -26,14 +25,13 @@ class ClientController extends Controller
         $request->validate([
             'user_name' => 'required|regex:/^[\pL\s\-]+$/u|min:3|max:255',
             'user_email' => 'required|email:rfc,dns|unique:App\Client,email',
-            'user_phone'=> 'required','regex:/[(][0-9]{3}[)] [0-9]{3}[-| ][0-9]{4}/',
+            'user_phone'=> 'required|integer|regex:/^\d{10}$/',
         ]);
         
         $client = new Client;
         $client->name = $request->user_name;
         $client->email = $request->user_email;
         $client->phone = $request->user_phone;
-        $client->record_date=date('Y-m-d');
         $client->save();
         return redirect('add')->with('status', 'User added Successfuly ^-^'); 
     }
@@ -57,7 +55,7 @@ class ClientController extends Controller
         $request->validate([
             'user_name' => 'required|regex:/^[\pL\s\-]+$/u|min:3|max:255',
             'user_email' => 'required|email:rfc,dns|unique:App\Client,email,'.$client_update->id,
-            'user_phone'=> 'required','regex:/[(][0-9]{3}[)] [0-9]{3}[-| ][0-9]{4}/',
+            'user_phone'=> 'required|integer|regex:/^\d{10}$/',
         ]);
         
         // $client =Client::findOrFail($id);
